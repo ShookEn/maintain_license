@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D3D3D3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            height: 50px; 
+            margin-right: 10px;
+        }
+        h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+        }
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            max-width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            color: red;
+            margin-top: 20px;
+        }
+        .forgot-password {
+            text-align: center;
+            color: black;
+            margin-top: 15px;
+        }
+        .forgot-password a {
+            color: #218838;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .forgot-password a:hover {
+            text-decoration: underline;
+            color: black;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .title {
+            text-align: center;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+            color: #ccc;
+        }
+        .toggle-password:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="images/icon.ico" alt="logo" class="logo">
+        <h2>Million Utility License Manage Portal</h2>
+    </div>
+
+    <div class="container">
+        <h1 class="title">Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility()"></span>
+            </div>
+            <button type="button" onclick="login()">Login</button>
+            <div id="message" class="message"></div>
+        </form>
+        <div class="forgot-password">
+            <p>Forgot your password? Click on <a href="reset_password.html">Reset password</a></p>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const messageElement = document.getElementById('message');
+
+            console.log('Username:', username); // Debugging output
+            console.log('Password:', password); // Debugging output
+
+            fetch('login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+            })
+            .then(response => {
+                console.log('Response status:', response.status); // Debugging output
+                return response.text(); // Change to text to check raw response
+            })
+            .then(data => {
+                console.log('Response data:', data); // Debugging output
+                try {
+                    const jsonData = JSON.parse(data); // Attempt to parse JSON
+                    if (jsonData.success) {
+                        window.location.href = 'license.html';
+                    } else {
+                        messageElement.textContent = jsonData.message;
+                    }
+                } catch (e) {
+                    console.error('JSON parse error:', e); // Debugging output
+                    messageElement.textContent = 'An error occurred';
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error); // Debugging output
+                messageElement.textContent = 'An error occurred';
+            });
+        }
+    </script>
+</body>
+</html>
