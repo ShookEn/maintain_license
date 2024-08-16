@@ -49,7 +49,67 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Save License</title>
     <style>
-        /* Your existing styles here */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #383838;
+            padding: 15px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .save-form {
+            margin-top: 20px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            width: 200px;
+            font-weight: bold;
+            margin-right: 15px;
+            text-align: right;
+        }
+        .form-group input[type="text"], .form-group input[type="date"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #3395FF;
+            border: none;
+            border-radius: 4px;
+            color: black;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
     </style>
 </head>
 <body>

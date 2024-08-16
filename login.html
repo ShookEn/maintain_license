@@ -128,8 +128,8 @@
             const password = document.getElementById('password').value;
             const messageElement = document.getElementById('message');
 
-            console.log('Username:', username); // Debugging output
-            console.log('Password:', password); // Debugging output
+            console.log('Username:', username); 
+            console.log('Password:', password); 
 
             fetch('login.php', {
                 method: 'POST',
@@ -139,13 +139,13 @@
                 body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
             })
             .then(response => {
-                console.log('Response status:', response.status); // Debugging output
-                return response.text(); // Change to text to check raw response
+                console.log('Response status:', response.status); 
+                return response.text(); 
             })
             .then(data => {
-                console.log('Response data:', data); // Debugging output
+                console.log('Response data:', data); 
                 try {
-                    const jsonData = JSON.parse(data); // Attempt to parse JSON
+                    const jsonData = JSON.parse(data); 
                     if (jsonData.success) {
                         window.location.href = 'license.html';
                     } else {

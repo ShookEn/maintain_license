@@ -2,13 +2,13 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'C:\xampp\htdocs\maintain_license\vendor\autoload.php'; // Ensure this path is correct
-require 'C:\xampp\htdocs\maintain_license\db_connection.php'; // Ensure this path is correct
+//path
+require 'C:\xampp\htdocs\maintain_license\vendor\autoload.php'; 
+require 'C:\xampp\htdocs\maintain_license\db_connection.php'; 
 
-// Retrieve email from the form
 $email = $_POST['email'];
 
-// Check if the email exists in the database
+
 $sql = "SELECT * FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 
@@ -56,7 +56,7 @@ $sql = "INSERT INTO password_resets (email, reset_token, reset_token_expire_at) 
         $mail->Username = '602ead6c903ca2';
         $mail->Password = '139ce10c8643ab';
 
-        $mail->setFrom('ennalim930309@gmail.com', 'Your Name');
+        $mail->setFrom('Million Utility', 'Your Name');
         $mail->addAddress($email);
 
         // Content

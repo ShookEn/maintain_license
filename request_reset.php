@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
         $mail->Password = '139ce10c8643ab';
 
         // Recipients
-        $mail->setFrom('ennalim930309@gmail.com', 'Your Name');
+        $mail->setFrom('no_replyMillion', 'Million Utility');
         $mail->addAddress($email);
 
         // Content
