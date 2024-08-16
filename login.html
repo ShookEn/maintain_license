@@ -152,12 +152,12 @@
                         messageElement.textContent = jsonData.message;
                     }
                 } catch (e) {
-                    console.error('JSON parse error:', e); // Debugging output
+                    console.error('JSON parse error:', e); 
                     messageElement.textContent = 'An error occurred';
                 }
             })
             .catch(error => {
-                console.error('Fetch error:', error); // Debugging output
+                console.error('Fetch error:', error); 
                 messageElement.textContent = 'An error occurred';
             });
         }
